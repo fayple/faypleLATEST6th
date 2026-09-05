@@ -1,0 +1,10 @@
+{
+  "name": "fayple-studios-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fayple Studios site with Netlify Functions backend for shared announcements/updates and Supabase-backed file storage",
+  "dependencies": {
+    "@netlify/blobs": "^10.0.0",
+    "@supabase/supabase-js": "^2.115.0"
+  }
+}
