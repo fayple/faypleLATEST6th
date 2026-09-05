@@ -1,7 +1,8 @@
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 const SESSIONS_STORE = 'sessions_v2';
 
 exports.handler = async (event) => {
+  connectLambda(event);
   const auth = event.headers['authorization'] || event.headers['Authorization'];
   if (!auth || !auth.startsWith('Bearer ')) {
     return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
