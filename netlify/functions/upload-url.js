@@ -3,7 +3,7 @@
 // browser uploads straight to Supabase using the signed URL this returns.
 // That's what lets this handle files way bigger than Netlify Functions'
 // ~6MB request/response cap.
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 const { createClient } = require('@supabase/supabase-js');
 
 const SESSIONS_STORE = 'sessions_v2';
@@ -25,6 +25,7 @@ async function isAdminSession(event) {
 }
 
 exports.handler = async (event) => {
+  connectLambda(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
   }
