@@ -5,13 +5,14 @@
 // admin powers (publish/delete) depends on whether their Discord ID is in
 // ADMIN_DISCORD_IDS — regular visitors can still sign in and browse, they
 // just won't see admin controls.
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 const crypto = require('crypto');
 
 const SESSIONS_STORE = 'sessions_v2';
 const SESSION_TTL_MS = 10 * 24 * 60 * 60 * 1000; // 10 days
 
 exports.handler = async (event) => {
+  connectLambda(event);
   const code = event.queryStringParameters && event.queryStringParameters.code;
   const proto = event.headers['x-forwarded-proto'] || 'https';
   const host = event.headers['host'];
