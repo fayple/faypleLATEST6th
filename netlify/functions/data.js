@@ -6,7 +6,7 @@
 // For type=files, this only stores metadata (name, description, size, and
 // the path/URL in Supabase Storage) — the actual file bytes live in Supabase,
 // never in Netlify Blobs, since Netlify Functions cap bodies at ~6MB.
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 const { createClient } = require('@supabase/supabase-js');
 
 const ALLOWED_TYPES = ['ann', 'updates', 'files'];
@@ -35,6 +35,7 @@ async function isAuthorized(event) {
 }
 
 exports.handler = async (event) => {
+  connectLambda(event);
   const params = event.queryStringParameters || {};
   const type = params.type;
 
