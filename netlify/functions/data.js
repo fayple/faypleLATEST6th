@@ -9,7 +9,7 @@
 const { getStore, connectLambda } = require('@netlify/blobs');
 const { createClient } = require('@supabase/supabase-js');
 
-const ALLOWED_TYPES = ['ann', 'updates', 'files'];
+const ALLOWED_TYPES = ['ann', 'updates', 'files', 'collabs'];
 const BUCKET = 'fayple-files';
 
 async function isAuthorized(event) {
@@ -40,7 +40,7 @@ exports.handler = async (event) => {
   const type = params.type;
 
   if (!ALLOWED_TYPES.includes(type)) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid type — must be "ann", "updates" or "files"' }) };
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid type — must be "ann", "updates", "files" or "collabs"' }) };
   }
 
   const store = getStore('fayple-data');
