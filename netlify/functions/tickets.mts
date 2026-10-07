@@ -1,6 +1,6 @@
 // Support tickets: private chats between one member and the support team.
 // A ticket is visible only to the member who opened it and to admins
-// (Discord IDs listed in ADMIN_DISCORD_IDS — the same people who get the
+// (Discord IDs listed in ADMIN_DISCORD_IDS below — the same people who get the
 // Admin Panel). Sessions come from the existing Discord login (Blobs store
 // "sessions_v2", see discord-callback.js); ticket data lives in Netlify Database.
 //
@@ -17,6 +17,10 @@ import { db } from "../../db/index.js";
 import { tickets, ticketMessages } from "../../db/schema.js";
 
 const SESSIONS_STORE = "sessions_v2";
+// The only Discord account with admin powers (Admin Panel, publishing,
+// support-team access to every ticket). Checked on every request, so changing
+// it here immediately revokes admin from anyone else, even mid-session.
+const ADMIN_DISCORD_IDS = ["1122944588232011796"];
 const MAX_MESSAGE_LENGTH = 2000;
 const MAX_REASON_LENGTH = 80;
 
@@ -32,7 +36,7 @@ async function getViewer(req: Request): Promise<Viewer | null> {
     id: String(session.discord.id),
     name: session.discord.displayName || session.discord.username || "User",
     avatar: session.discord.avatar || null,
-    isAdmin: !!session.isAdmin,
+    isAdmin: ADMIN_DISCORD_IDS.includes(String(session.discord.id)),
   };
 }
 
