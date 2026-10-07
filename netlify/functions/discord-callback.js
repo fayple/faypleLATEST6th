@@ -3,12 +3,16 @@
 // the client secret never touches the browser), fetches the Discord profile,
 // and creates a session for ANY Discord user who logs in. Whether they get
 // admin powers (publish/delete) depends on whether their Discord ID is in
-// ADMIN_DISCORD_IDS — regular visitors can still sign in and browse, they
+// ADMIN_DISCORD_IDS below — regular visitors can still sign in and browse, they
 // just won't see admin controls.
 const { getStore, connectLambda } = require('@netlify/blobs');
 const crypto = require('crypto');
 
 const SESSIONS_STORE = 'sessions_v2';
+// The only Discord account with admin powers (Admin Panel, publishing,
+// support-team access to every ticket). Checked on every request, so changing
+// it here immediately revokes admin from anyone else, even mid-session.
+const ADMIN_DISCORD_IDS = ['1122944588232011796'];
 const SESSION_TTL_MS = 10 * 24 * 60 * 60 * 1000; // 10 days
 
 exports.handler = async (event) => {
@@ -62,9 +66,7 @@ exports.handler = async (event) => {
     return { statusCode: 302, headers: { Location: '/?discord_error=profile_failed' } };
   }
 
-  const allowlist = (process.env.ADMIN_DISCORD_IDS || '')
-    .split(',').map(s => s.trim()).filter(Boolean);
-  const isAdmin = allowlist.includes(user.id);
+  const isAdmin = ADMIN_DISCORD_IDS.includes(String(user.id));
 
   const avatarUrl = user.avatar
     ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`

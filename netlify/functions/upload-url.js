@@ -8,6 +8,10 @@ const { createClient } = require('@supabase/supabase-js');
 
 const SESSIONS_STORE = 'sessions_v2';
 const BUCKET = 'fayple-files';
+// The only Discord account with admin powers (Admin Panel, publishing,
+// support-team access to every ticket). Checked on every request, so changing
+// it here immediately revokes admin from anyone else, even mid-session.
+const ADMIN_DISCORD_IDS = ['1122944588232011796'];
 
 async function isAdminSession(event) {
   const auth = event.headers['authorization'] || event.headers['Authorization'];
@@ -21,7 +25,7 @@ async function isAdminSession(event) {
     return false;
   }
   if (!session || session.expiresAt < Date.now()) return false;
-  return !!session.isAdmin;
+  return ADMIN_DISCORD_IDS.includes(String(session.discord?.id));
 }
 
 exports.handler = async (event) => {
