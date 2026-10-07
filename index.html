@@ -124,6 +124,23 @@ body{
 .gate-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
 .gate-btn:hover{box-shadow:0 0 0 1px #fff,0 0 22px rgba(245,245,240,0.35);transform:translateY(-1px)}
 .gate-btn:active{transform:translateY(0) scale(0.97)}
+.gate-btn:disabled,.gate-btn:disabled:hover{background:#3a3a40;color:#77777f;cursor:not-allowed;box-shadow:none;transform:none}
+.gate-checks{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;text-align:left}
+.gate-check{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.4;color:#aaa;cursor:pointer;user-select:none}
+.gate-check input{position:absolute;opacity:0;width:1px;height:1px}
+.gate-box{flex-shrink:0;width:16px;height:16px;margin-top:1px;border:1px solid #555;border-radius:4px;background:rgba(255,255,255,0.03);transition:all 0.15s;position:relative}
+.gate-check input:checked+.gate-box{background:#fff;border-color:#fff}
+.gate-check input:checked+.gate-box::after{content:"";position:absolute;left:5px;top:1px;width:4px;height:9px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.gate-check input:focus-visible+.gate-box{box-shadow:0 0 0 2px rgba(255,255,255,0.4)}
+.gate-check a,.gate-legal a{color:#fff;text-decoration:underline}
+.gate-legal{margin-top:16px;font-size:10px;line-height:1.5;color:#666}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center}
+.foot-links a{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#666;text-decoration:none;transition:color 0.2s}
+.foot-links a:hover{color:#fff}
+.cookie-notice{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:600;width:calc(100% - 32px);max-width:560px;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;background:rgba(14,14,20,0.92);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 16px 40px rgba(0,0,0,0.5);font-size:12px;line-height:1.5;color:#aaa}
+.cookie-notice[hidden]{display:none}
+.cookie-notice a{color:#fff}
+.cookie-notice button{flex-shrink:0;background:#fff;color:#000;border:none;border-radius:8px;padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer}
 
 /* ── HEADER ── */
 header{
@@ -1145,12 +1162,33 @@ header{background:rgba(8,8,12,0.55);border-bottom-color:rgba(255,255,255,0.06)}
     <span class="logo-mark" style="font-size:20px;display:block;margin-bottom:14px;color:#666">◆</span>
     <div class="gate-title">Fayple Studios</div>
     <div class="gate-sub">Sign in with Discord to continue</div>
-    <button class="gate-btn" onclick="discordLogin()">
+    <div class="gate-checks">
+      <label class="gate-check">
+        <input type="checkbox" id="agreeTerms" onchange="updateGateBtn()">
+        <span class="gate-box" aria-hidden="true"></span>
+        <span>I agree with Fayple Studios <a href="/terms.html" target="_blank" rel="noopener">Terms Of Use</a></span>
+      </label>
+      <label class="gate-check">
+        <input type="checkbox" id="agreeAge" onchange="updateGateBtn()">
+        <span class="gate-box" aria-hidden="true"></span>
+        <span>I am Older than 13 Years Old</span>
+      </label>
+    </div>
+    <button class="gate-btn" id="gateBtn" disabled onclick="if(!this.disabled)discordLogin()">
       <svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3c-.2.4-.5.9-.7 1.3a18.4 18.4 0 0 0-5.5 0A13 13 0 0 0 8.5 3a19.9 19.9 0 0 0-4.9 1.4C.5 8.9-.3 13.3.1 17.6a20 20 0 0 0 6.1 3.1c.5-.7.9-1.4 1.3-2.1-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.6.4-1.3.7-2 1 .4.7.8 1.4 1.3 2.1a19.9 19.9 0 0 0 6.1-3.1c.5-5-1-9.3-3.6-13.2zM8 15.1c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.3 8 10.3s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
       Continue with Discord
     </button>
+    <div class="gate-legal">
+      By continuing you also acknowledge our <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="/cookies.html" target="_blank" rel="noopener">Cookie Policy</a>.
+    </div>
   </div>
 </div>
+<script>
+function updateGateBtn(){
+  var ok=document.getElementById('agreeTerms').checked&&document.getElementById('agreeAge').checked;
+  document.getElementById('gateBtn').disabled=!ok;
+}
+</script>
 
 <div id="pageContent">
 
@@ -1325,8 +1363,21 @@ header{background:rgba(8,8,12,0.55);border-bottom-color:rgba(255,255,255,0.06)}
 <!-- FOOTER -->
 <footer>
   <div class="foot-logo">Fayple Studios</div>
+  <nav class="foot-links" aria-label="Legal">
+    <a href="/terms.html">Terms of Use</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/cookies.html">Cookie Policy</a>
+    <a href="/dmca.html">DMCA Policy</a>
+  </nav>
   <div class="foot-copy">© 2025 Fayple Studios — All rights reserved</div>
 </footer>
+
+<!-- COOKIE NOTICE -->
+<div id="cookieNotice" class="cookie-notice" role="dialog" aria-label="Cookie notice" hidden>
+  <span>We use only essential browser storage to keep you signed in and remember your theme. See our <a href="/cookies.html">Cookie Policy</a>.</span>
+  <button type="button" onclick="try{localStorage.setItem('fayple_cookie_ack','1')}catch(e){}document.getElementById('cookieNotice').hidden=true">Got it</button>
+</div>
+<script>try{if(!localStorage.getItem('fayple_cookie_ack'))document.getElementById('cookieNotice').hidden=false}catch(e){}</script>
 
 </div>
 <!-- /#pageContent -->
