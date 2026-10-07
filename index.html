@@ -886,6 +886,89 @@ input[type=file]::file-selector-button{
 .form-btn.ghost{border-color:#333;color:#444}
 .form-btn.ghost:hover{border-color:#fff;color:#fff;background:transparent;box-shadow:0 0 12px rgba(245,245,240,0.15)}
 
+/* ── SUPPORT / TICKETS ── */
+.support-modal{max-width:560px;border-radius:18px}
+.support-modal .modal-header{padding:22px 26px}
+.support-choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.support-choice{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:26px 18px;border-radius:18px;cursor:pointer;text-decoration:none;
+  background:linear-gradient(160deg,#151515,#0a0a0a);border:1px solid #262626;color:#fff;
+  font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+  transition:transform 0.2s,border-color 0.2s,box-shadow 0.2s;
+}
+.support-choice svg{width:30px;height:30px;fill:currentColor;opacity:0.9}
+.support-choice small{font-size:10px;font-weight:500;letter-spacing:0.02em;text-transform:none;color:#666}
+.support-choice:hover{transform:translateY(-3px);border-color:#fff;box-shadow:0 0 0 1px #fff,0 10px 30px rgba(245,245,240,0.12)}
+.support-choice:active{transform:scale(0.97)}
+.support-choice.discord:hover{border-color:#8b93ff;box-shadow:0 0 0 1px #8b93ff,0 10px 30px rgba(88,101,242,0.25)}
+.support-list-title{margin:26px 0 10px;font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#555}
+.ticket-row{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  padding:12px 14px;margin-bottom:8px;border-radius:12px;cursor:pointer;
+  background:#090909;border:1px solid #1c1c1c;color:#ddd;font-family:'Manrope',sans-serif;
+  transition:border-color 0.2s;
+}
+.ticket-row:hover{border-color:#555}
+.ticket-row img{width:28px;height:28px;border-radius:50%;flex-shrink:0}
+.ticket-row-main{flex:1;min-width:0}
+.ticket-row-reason{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ticket-row-meta{font-size:10px;color:#555;margin-top:2px}
+.ticket-status{font-size:8px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid #2a2a2a;color:#666}
+.ticket-status.open{border-color:#3a6;color:#5d9}
+.support-empty{font-size:11px;color:#444;padding:8px 2px}
+
+.reason-title{font-family:'Unbounded',sans-serif;font-size:17px;color:#fff;line-height:1.35;margin-bottom:6px}
+.reason-warn{font-size:10px;color:#a55;letter-spacing:0.03em;margin-bottom:18px}
+.reason-input{border-radius:12px !important;font-size:14px !important;padding:14px 16px !important}
+.reason-input::placeholder{color:#444}
+.reason-count{font-size:10px;color:#555;margin-top:8px;min-height:14px}
+.reason-count.bad{color:#a55}
+.pill-btn{
+  display:block;width:100%;margin-top:18px;padding:14px 20px;border-radius:999px;cursor:pointer;
+  background:#fff;color:#000;border:1px solid #fff;
+  font-family:'Manrope',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;
+  transition:all 0.2s;animation:modalIn 0.25s ease;
+}
+.pill-btn:hover{box-shadow:0 0 0 1px #fff,0 0 24px rgba(245,245,240,0.35)}
+.pill-btn:active{transform:scale(0.97)}
+.pill-btn:disabled{opacity:0.5;cursor:default}
+.pill-btn.ghost{background:transparent;color:#888;border-color:#333}
+.pill-btn.ghost:hover{color:#fff;border-color:#fff}
+
+.ticket-modal{max-width:640px;height:min(720px,90vh);display:flex;flex-direction:column;overflow:hidden;border-radius:18px}
+.ticket-head-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ticket-head-sub{font-size:10px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ticket-head-actions{display:flex;gap:8px;align-items:center}
+.ticket-close-btn{
+  background:none;border:1px solid #333;color:#777;border-radius:999px;cursor:pointer;
+  padding:6px 12px;font-family:'Manrope',sans-serif;font-size:8px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;
+}
+.ticket-close-btn:hover{border-color:#a55;color:#e88}
+.ticket-msgs{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.tmsg{display:flex;gap:10px;max-width:85%}
+.tmsg img{width:30px;height:30px;border-radius:50%;flex-shrink:0}
+.tmsg-bubble{background:#141414;border:1px solid #1f1f1f;border-radius:14px 14px 14px 4px;padding:10px 13px}
+.tmsg-name{font-size:10px;font-weight:800;color:#bbb;margin-bottom:4px;display:flex;gap:6px;align-items:center}
+.tmsg-name time{font-weight:500;color:#444}
+.tmsg-staff{font-size:7px;letter-spacing:0.14em;text-transform:uppercase;background:#fff;color:#000;padding:2px 6px;border-radius:999px}
+.tmsg-text{font-size:13px;color:#eee;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.tmsg.mine{align-self:flex-end;flex-direction:row-reverse}
+.tmsg.mine .tmsg-bubble{background:#f5f5f0;border-color:#f5f5f0;border-radius:14px 14px 4px 14px}
+.tmsg.mine .tmsg-name{color:#333;justify-content:flex-end}
+.tmsg.mine .tmsg-name time{color:#888}
+.tmsg.mine .tmsg-text{color:#0a0a0a}
+.tmsg-system{align-self:center;font-size:10px;color:#555;text-align:center;padding:4px 12px;border:1px solid #1a1a1a;border-radius:999px}
+.ticket-compose{display:flex;gap:10px;padding:14px 16px;border-top:1px solid #1a1a1a;align-items:flex-end}
+.ticket-compose textarea{min-height:44px;max-height:140px;resize:none;border-radius:14px;padding:11px 14px}
+.ticket-send{
+  flex-shrink:0;height:44px;padding:0 20px;border-radius:999px;cursor:pointer;border:1px solid #fff;background:#fff;color:#000;
+  font-family:'Manrope',sans-serif;font-size:9px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;
+}
+.ticket-send:disabled{opacity:0.4;cursor:default}
+.ticket-closed-note{padding:16px;border-top:1px solid #1a1a1a;text-align:center;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#555}
+@media(max-width:560px){.support-choices{grid-template-columns:1fr}.ticket-modal{height:100vh;max-height:100vh;border-radius:0}}
+
 /* ── TOAST ── */
 .toast{
   position:fixed;bottom:24px;right:24px;
@@ -1204,6 +1287,7 @@ function updateGateBtn(){
     <a class="nav-link" href="#" onclick="showTab('files',document.querySelectorAll('.tab')[1]);closeNav();return false">Files</a>
     <a class="nav-link" href="#" onclick="showTab('updates',document.querySelectorAll('.tab')[2]);closeNav();return false">Updates</a>
     <a class="nav-link" href="#" onclick="showTab('collaborators',document.querySelectorAll('.tab')[3]);closeNav();return false">Collaborators</a>
+    <a class="nav-link" href="#" onclick="openSupport();closeNav();return false">Support</a>
     <button class="admin-btn" id="adminBtn" onclick="openAdminLogin();closeNav()">Admin</button>
     <div class="theme-wrap">
       <div class="admin-bar" id="adminBar" onclick="toggleProfileMenu(event)" style="display:none"></div>
@@ -1384,6 +1468,71 @@ function updateGateBtn(){
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- SUPPORT MODAL -->
+<div class="modal-overlay" id="supportModal">
+  <div class="modal support-modal">
+    <div class="modal-header">
+      <span class="modal-title">Support</span>
+      <button class="modal-close" onclick="closeModal('supportModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="support-choices">
+        <button class="support-choice" onclick="openReasonPrompt()">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4V6a2 2 0 0 1 2-2zm5 3v2h2V7H9zm0 4v2h2v-2H9zm0 4v2h2v-2H9z"/></svg>
+          Open a Ticket
+          <small>Private chat with our support team</small>
+        </button>
+        <a class="support-choice discord" href="https://discord.gg/jGxw5vC9ta" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.7 1.3a18.4 18.4 0 0 0-5.5 0L8.5 3a19.9 19.9 0 0 0-4.9 1.4C.5 8.9-.3 13.3.1 17.6a20 20 0 0 0 6.1 3.1l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a20 20 0 0 0 6.1-3.1c.5-5-.8-9.4-3.6-13.2zM8.3 14.9c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm7.4 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z"/></svg>
+          Discord Community
+          <small>Chat with players &amp; the team</small>
+        </a>
+      </div>
+      <div class="support-list-title" id="ticketListTitle">My Tickets</div>
+      <div id="ticketList"><div class="support-empty">Loading…</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKET REASON PROMPT -->
+<div class="modal-overlay" id="reasonModal">
+  <div class="modal support-modal" style="max-width:460px">
+    <div class="modal-header">
+      <span class="modal-title">New Ticket</span>
+      <button class="modal-close" onclick="closeModal('reasonModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="reason-title">Describe Why Do you need a ticket</div>
+      <div class="reason-warn">Opening a Ticket without a Reason will get you in trouble</div>
+      <input type="text" id="ticketReason" class="reason-input" maxlength="80" placeholder="From 1-5 Words" autocomplete="off" oninput="onReasonInput()" onkeydown="if(event.key==='Enter'&&!document.getElementById('reasonSubmit').hidden)submitTicket()">
+      <div class="reason-count" id="reasonCount"></div>
+      <button class="pill-btn" id="reasonSubmit" hidden onclick="submitTicket()">Open a Ticket</button>
+    </div>
+  </div>
+</div>
+
+<!-- TICKET CHAT -->
+<div class="modal-overlay" id="ticketModal">
+  <div class="modal ticket-modal">
+    <div class="modal-header">
+      <div class="ticket-head-info">
+        <span class="modal-title" id="ticketTitle">Ticket</span>
+        <span class="ticket-head-sub" id="ticketSub"></span>
+      </div>
+      <div class="ticket-head-actions">
+        <button class="ticket-close-btn" id="ticketCloseBtn" onclick="closeTicket()">Close Ticket</button>
+        <button class="modal-close" onclick="leaveTicket()">✕</button>
+      </div>
+    </div>
+    <div class="ticket-msgs" id="ticketMsgs"></div>
+    <div class="ticket-compose" id="ticketCompose">
+      <textarea id="ticketInput" rows="1" maxlength="2000" placeholder="Write a message…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendTicketMsg()}"></textarea>
+      <button class="ticket-send" id="ticketSend" onclick="sendTicketMsg()">Send</button>
+    </div>
+    <div class="ticket-closed-note" id="ticketClosedNote" hidden>This ticket is closed</div>
+  </div>
+</div>
 
 <!-- LOGIN MODAL -->
 <!-- ADMIN MODAL -->
@@ -1626,6 +1775,153 @@ async function saveNickname(){
     hint.textContent='Could not reach the server — check your connection';
     hint.className='pmenu-hint error';
   }
+}
+</script>
+<script>
+/* ── SUPPORT TICKETS ── */
+let activeTicketId=null,lastMsgId=0,ticketPoll=null,ticketSending=false;
+function tEsc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function tTime(d){const t=new Date(d);return t.toLocaleDateString([], {month:'short',day:'numeric'})+' '+t.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
+async function ticketApi(path,opts){
+  if(!E)throw new Error('Please sign in first');
+  opts=opts||{};
+  const res=await fetch('/api/tickets'+path,{
+    method:opts.method||'GET',
+    headers:Object.assign({Authorization:'Bearer '+E},opts.body?{'Content-Type':'application/json'}:{}),
+    body:opts.body?JSON.stringify(opts.body):undefined
+  });
+  const data=await res.json().catch(function(){return{};});
+  if(!res.ok){const err=new Error(data.error||'Something went wrong');err.status=res.status;err.data=data;throw err;}
+  return data;
+}
+function openSupport(){
+  D('supportModal');
+  loadTicketList();
+}
+async function loadTicketList(){
+  const box=document.getElementById('ticketList');
+  try{
+    const data=await ticketApi('');
+    document.getElementById('ticketListTitle').textContent=data.isAdmin?'All Tickets (Support)':'My Tickets';
+    if(!data.tickets.length){box.innerHTML='<div class="support-empty">No tickets yet.</div>';return;}
+    box.innerHTML=data.tickets.map(function(t){
+      return '<button class="ticket-row" onclick="openTicket('+t.id+')">'+
+        (t.ownerAvatar?'<img src="'+tEsc(t.ownerAvatar)+'" alt="">':'')+
+        '<div class="ticket-row-main"><div class="ticket-row-reason">#'+t.id+' · '+tEsc(t.reason)+'</div>'+
+        '<div class="ticket-row-meta">'+tEsc(t.ownerName)+' · '+tTime(t.updatedAt)+'</div></div>'+
+        '<span class="ticket-status '+(t.status==='open'?'open':'')+'">'+tEsc(t.status)+'</span></button>';
+    }).join('');
+  }catch(e){box.innerHTML='<div class="support-empty">'+tEsc(e.message)+'</div>';}
+}
+function reasonWords(){const v=document.getElementById('ticketReason').value.trim();return v?v.split(/\s+/).length:0;}
+function openReasonPrompt(){
+  const input=document.getElementById('ticketReason');
+  input.value='';
+  onReasonInput();
+  D('reasonModal');
+  setTimeout(function(){input.focus();},50);
+}
+function onReasonInput(){
+  const n=reasonWords(),ok=n>=1&&n<=5;
+  const count=document.getElementById('reasonCount');
+  count.textContent=n?n+' / 5 words'+(n>5?' — too many':''):'';
+  count.className='reason-count'+(n>5?' bad':'');
+  document.getElementById('reasonSubmit').hidden=!ok;
+}
+async function submitTicket(){
+  const btn=document.getElementById('reasonSubmit');
+  const n=reasonWords();
+  if(n<1||n>5)return;
+  btn.disabled=true;
+  try{
+    const data=await ticketApi('',{method:'POST',body:{reason:document.getElementById('ticketReason').value}});
+    closeModal('reasonModal');closeModal('supportModal');
+    Y('Ticket opened');
+    openTicket(data.ticket.id);
+  }catch(e){
+    if(e.status===409&&e.data&&e.data.ticket){
+      closeModal('reasonModal');closeModal('supportModal');
+      Y('You already have an open ticket',!0);
+      openTicket(e.data.ticket.id);
+    }else Y(e.message,!0);
+  }finally{btn.disabled=false;}
+}
+function renderTicketMsg(m,viewerId){
+  const mine=m.authorId===viewerId;
+  const el=document.createElement('div');
+  el.className='tmsg'+(mine?' mine':'');
+  el.innerHTML=(m.authorAvatar?'<img src="'+tEsc(m.authorAvatar)+'" alt="">':'')+
+    '<div class="tmsg-bubble"><div class="tmsg-name">'+tEsc(m.authorName)+(m.isStaff?'<span class="tmsg-staff">Support</span>':'')+
+    '<time>'+tTime(m.createdAt)+'</time></div><div class="tmsg-text">'+tEsc(m.body)+'</div></div>';
+  return el;
+}
+function applyTicketState(t,isAdmin){
+  const open=t.status==='open';
+  document.getElementById('ticketTitle').textContent='Ticket #'+t.id+(open?'':' · Closed');
+  document.getElementById('ticketSub').textContent=t.reason+' — '+t.ownerName;
+  document.getElementById('ticketCompose').style.display=open?'':'none';
+  document.getElementById('ticketClosedNote').hidden=open;
+  document.getElementById('ticketCloseBtn').style.display=open?'':'none';
+}
+async function fetchTicket(initial){
+  const id=activeTicketId;
+  if(!id)return;
+  try{
+    const data=await ticketApi('/'+id+'?after='+lastMsgId);
+    if(id!==activeTicketId)return;
+    applyTicketState(data.ticket,data.isAdmin);
+    const box=document.getElementById('ticketMsgs');
+    if(initial){
+      box.innerHTML='<div class="tmsg-system">Ticket opened · '+tTime(data.ticket.createdAt)+' · Only you and the support team can see this chat</div>';
+    }
+    const nearBottom=box.scrollHeight-box.scrollTop-box.clientHeight<80;
+    data.messages.forEach(function(m){
+      if(m.id<=lastMsgId)return;
+      box.appendChild(renderTicketMsg(m,data.viewerId));
+      lastMsgId=m.id;
+    });
+    if(initial||nearBottom)box.scrollTop=box.scrollHeight;
+    if(data.ticket.status!=='open'&&ticketPoll){clearInterval(ticketPoll);ticketPoll=null;}
+  }catch(e){
+    if(initial){Y(e.message,!0);leaveTicket();}
+  }
+}
+function openTicket(id){
+  closeModal('supportModal');
+  activeTicketId=id;lastMsgId=0;
+  document.getElementById('ticketMsgs').innerHTML='<div class="tmsg-system">Loading…</div>';
+  document.getElementById('ticketInput').value='';
+  D('ticketModal');
+  fetchTicket(true);
+  if(ticketPoll)clearInterval(ticketPoll);
+  ticketPoll=setInterval(function(){if(!document.hidden)fetchTicket(false);},3000);
+}
+function leaveTicket(){
+  activeTicketId=null;
+  if(ticketPoll){clearInterval(ticketPoll);ticketPoll=null;}
+  closeModal('ticketModal');
+}
+async function sendTicketMsg(){
+  const input=document.getElementById('ticketInput');
+  const text=input.value.trim();
+  if(!text||!activeTicketId||ticketSending)return;
+  ticketSending=true;
+  document.getElementById('ticketSend').disabled=true;
+  try{
+    await ticketApi('/'+activeTicketId+'/messages',{method:'POST',body:{body:text}});
+    input.value='';
+    await fetchTicket(false);
+    const box=document.getElementById('ticketMsgs');box.scrollTop=box.scrollHeight;
+  }catch(e){Y(e.message,!0);}
+  finally{ticketSending=false;document.getElementById('ticketSend').disabled=false;input.focus();}
+}
+async function closeTicket(){
+  if(!activeTicketId||!confirm('Close this ticket? No more messages can be sent after that.'))return;
+  try{
+    await ticketApi('/'+activeTicketId+'/close',{method:'POST'});
+    Y('Ticket closed');
+    fetchTicket(false);
+  }catch(e){Y(e.message,!0);}
 }
 </script>
 </body>
