@@ -26,7 +26,24 @@ export const ticketMessages = pgTable(
     authorAvatar: text("author_avatar"),
     isStaff: boolean("is_staff").notNull().default(false),
     body: text().notNull(),
+    // Optional image attachment (bytes live in the "ticket-media" Blobs store).
+    imageKey: text("image_key"),
+    imageType: text("image_type"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },
   (t) => [index("ticket_messages_ticket_idx").on(t.ticketId, t.id)]
 );
+
+// Site profile per Discord account. discordName/discordAvatar mirror the
+// Discord account and are refreshed on every visit; displayName/bio/avatarKey
+// are the member's own overrides (null = fall back to Discord data).
+export const profiles = pgTable("profiles", {
+  discordId: text("discord_id").primaryKey(),
+  discordName: text("discord_name").notNull(),
+  discordAvatar: text("discord_avatar"),
+  displayName: text("display_name"),
+  bio: text(),
+  avatarKey: text("avatar_key"),
+  nicknameChangedAt: timestamp("nickname_changed_at"),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});

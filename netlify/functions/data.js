@@ -15,10 +15,13 @@ const BUCKET = 'fayple-files';
 // support-team access to every ticket). Checked on every request, so changing
 // it here immediately revokes admin from anyone else, even mid-session.
 const ADMIN_DISCORD_IDS = ['1122944588232011796'];
+// Posts of these types show who wrote them (avatar + link to their profile).
+const AUTHORED_TYPES = ['ann', 'updates', 'files'];
 
-async function isAuthorized(event) {
+// Returns the admin's session, or null if the request isn't from an admin.
+async function getAdminSession(event) {
   const auth = event.headers['authorization'] || event.headers['Authorization'];
-  if (!auth || !auth.startsWith('Bearer ')) return false;
+  if (!auth || !auth.startsWith('Bearer ')) return null;
   const token = auth.slice(7);
   // Must match SESSIONS_STORE in discord-callback.js.
   const sessions = getStore('sessions_v2');
@@ -26,16 +29,16 @@ async function isAuthorized(event) {
   try {
     session = await sessions.get(token, { type: 'json' });
   } catch (e) {
-    return false;
+    return null;
   }
-  if (!session) return false;
+  if (!session) return null;
   if (session.expiresAt < Date.now()) {
     await sessions.delete(token);
-    return false;
+    return null;
   }
   // Regular (non-admin) visitors get a session too now, so they can browse —
   // but only admins can publish or delete.
-  return ADMIN_DISCORD_IDS.includes(String(session.discord?.id));
+  return ADMIN_DISCORD_IDS.includes(String(session.discord?.id)) ? session : null;
 }
 
 exports.handler = async (event) => {
@@ -58,8 +61,8 @@ exports.handler = async (event) => {
     };
   }
 
-  const authorized = await isAuthorized(event);
-  if (!authorized) {
+  const adminSession = await getAdminSession(event);
+  if (!adminSession) {
     return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized — please sign in again' }) };
   }
 
@@ -76,7 +79,16 @@ exports.handler = async (event) => {
     if (!body.item) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Missing item' }) };
     }
-    list.push(body.item);
+    const item = body.item;
+    // The author is always taken from the session, never from the request,
+    // so a post can't be attributed to someone else. Name/avatar are a
+    // fallback snapshot — the site shows the author's current profile.
+    if (AUTHORED_TYPES.includes(type)) {
+      item.authorId = String(adminSession.discord.id);
+      item.authorName = adminSession.discord.username || 'Fayple Studios';
+      item.authorAvatar = adminSession.discord.avatar || null;
+    }
+    list.push(item);
     await store.setJSON(type, list);
     return {
       statusCode: 200,
