@@ -1358,6 +1358,114 @@ header{background:rgba(8,8,12,0.55);border-bottom-color:rgba(255,255,255,0.06)}
 .img-lightbox img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.6)}
 @media(max-width:560px){.ep-avatar-row{flex-direction:column;text-align:center}.ep-avatar-actions{align-items:center}}
 </style>
+<style id="gm-style">
+/* ── DOWNLOAD GAMES ── */
+.gm-cta-wrap{display:flex;justify-content:center;margin:0 0 22px;position:relative}
+.gm-cta{display:inline-flex;align-items:center;gap:12px;padding:18px 40px;border-radius:999px;border:1px solid #f5f5f0;background:#f5f5f0;color:#000;font-family:'Manrope',sans-serif;font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 0 30px rgba(245,245,240,.16)}
+.gm-cta:hover{transform:translateY(-2px);box-shadow:0 0 0 1px #f5f5f0,0 0 42px rgba(245,245,240,.42)}
+.gm-cta:active{transform:scale(.97)}
+.gm-cta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+body.gm-open .hero,body.gm-open .stats-bar,body.gm-open .tabs,body.gm-open .content{display:none}
+.gm-view{display:none;max-width:1040px;margin:0 auto;padding:34px 40px 90px;position:relative;z-index:2}
+body.gm-open .gm-view{display:block;animation:sectionIn .45s ease}
+.gm-view [hidden]{display:none!important}
+.gm-back{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(255,255,255,.12);color:#bbb;border-radius:999px;padding:9px 18px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;margin-bottom:26px;transition:all .2s}
+.gm-back:hover{color:#fff;border-color:#777}
+.gm-title-row{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.gm-title-row h2{font-family:'Unbounded',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1.1}
+.gm-title-row p{font-size:12px;color:#888;margin-top:5px;font-weight:600}
+.gm-title-ico{font-size:34px;filter:grayscale(1)}
+.gm-search{position:relative;margin-bottom:12px;z-index:30}
+.gm-search-box{display:flex;align-items:center;gap:12px;background:rgba(10,10,14,.78);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:0 10px 0 18px;backdrop-filter:blur(12px);transition:border-color .2s,box-shadow .2s}
+.gm-search-box:focus-within{border-color:#8a8a92;box-shadow:0 0 0 4px rgba(255,255,255,.05)}
+.gm-search-box>svg{width:19px;height:19px;stroke:#888;fill:none;stroke-width:2.2;stroke-linecap:round;flex-shrink:0}
+.gm-search-box input[type=text]{flex:1;min-width:0;border:none!important;background:transparent!important;box-shadow:none!important;padding:19px 0;font-size:15px;font-weight:600;color:#fff;outline:none}
+.gm-clear{background:none;border:none;color:#777;font-size:15px;cursor:pointer;width:34px;height:34px;border-radius:50%;display:none}
+.gm-clear:hover{color:#fff;background:rgba(255,255,255,.08)}
+.gm-search.has-text .gm-clear{display:block}
+.gm-go{background:#f5f5f0;color:#000;border:none;border-radius:12px;padding:11px 20px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .15s}
+.gm-go:active{transform:scale(.95)}
+.gm-suggest{position:absolute;left:0;right:0;top:calc(100% + 8px);background:#0d0d10;border:1px solid rgba(255,255,255,.14);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.65);overflow:hidden auto;max-height:430px;display:none}
+.gm-suggest.open{display:block}
+.gm-sg-label{padding:12px 16px 6px;font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#666}
+.gm-sg-item{display:flex;align-items:center;gap:12px;width:100%;padding:10px 16px;background:none;border:none;color:#ddd;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;text-align:left;cursor:pointer}
+.gm-sg-item:hover,.gm-sg-item.active{background:rgba(255,255,255,.07);color:#fff}
+.gm-sg-item svg{width:15px;height:15px;stroke:#777;fill:none;stroke-width:2.2;stroke-linecap:round;flex-shrink:0;margin:0 10px 0 4px}
+.gm-sg-item img,.gm-sg-ph{width:38px;height:38px;border-radius:9px;object-fit:cover;background:#18181c;flex-shrink:0}
+.gm-sg-main{flex:1;min-width:0}
+.gm-sg-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.gm-sg-sub{display:block;font-size:11px;color:#777;margin-top:2px}
+.gm-tag{font-size:8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:#f5f5f0;color:#000;flex-shrink:0}
+.gm-hint{min-height:20px;font-size:12px;color:#888;font-weight:600;margin:6px 2px 18px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.gm-hint b{color:#ddd}
+.gm-link{background:none;border:none;color:#fff;text-decoration:underline;text-underline-offset:3px;font:inherit;font-weight:800;cursor:pointer;padding:0}
+.gm-chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#ccc;border-radius:999px;padding:6px 13px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s}
+.gm-chip:hover{color:#fff;border-color:#888}
+.gm-list-title{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#777;margin:6px 2px 14px}
+.gm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:14px}
+.gm-card{position:relative;display:flex;flex-direction:column;background:rgba(10,10,14,.78);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;text-align:left;color:#fff;cursor:pointer;padding:0;font-family:'Manrope',sans-serif;transition:transform .25s,border-color .25s,box-shadow .25s}
+.gm-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.gm-card-img{width:100%;aspect-ratio:1;object-fit:cover;background:#16161a;display:block}
+.gm-card-body{padding:12px 13px 14px}
+.gm-card-name{font-size:13px;font-weight:800;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:34px}
+.gm-card-by{font-size:10px;color:#777;margin-top:5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gm-card-meta{font-size:10px;color:#999;margin-top:8px;font-weight:700}
+.gm-badge{position:absolute;top:10px;left:10px;font-size:8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:#f5f5f0;color:#000}
+.gm-badge.off{background:rgba(0,0,0,.72);color:#8a8a92;border:1px solid rgba(255,255,255,.12)}
+.gm-skel{border-radius:16px;aspect-ratio:.78;background:linear-gradient(100deg,#131316 30%,#1c1c21 50%,#131316 70%);background-size:300% 100%;animation:gmShimmer 1.2s linear infinite}
+@keyframes gmShimmer{to{background-position:-300% 0}}
+.gm-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:#777;font-size:13px;font-weight:600;line-height:1.7}
+.gm-empty b{display:block;font-family:'Unbounded',sans-serif;color:#aaa;font-size:15px;margin-bottom:8px}
+.gm-banner{width:100%;aspect-ratio:16/6;object-fit:cover;border-radius:18px;background:#16161a;border:1px solid rgba(255,255,255,.08);display:block;margin-bottom:22px}
+.gm-head{display:flex;gap:20px;align-items:center;margin-bottom:18px}
+.gm-icon{width:96px;height:96px;border-radius:20px;object-fit:cover;background:#16161a;border:1px solid rgba(255,255,255,.1);flex-shrink:0}
+.gm-name{font-family:'Unbounded',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.15;color:#fff;word-break:break-word}
+.gm-by{font-size:12px;color:#888;font-weight:600;margin-top:7px}
+.gm-by a{color:#ccc;text-decoration:none;font-weight:700}
+.gm-by a:hover{color:#fff;text-decoration:underline}
+.gm-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.gm-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:9px 14px;font-size:11px;color:#999;font-weight:600}
+.gm-stat b{color:#fff;font-weight:800;margin-left:4px}
+.gm-desc{font-size:13px;line-height:1.7;color:#9a9aa6;white-space:pre-wrap;word-break:break-word;max-height:7.2em;overflow:hidden;position:relative}
+.gm-desc.full{max-height:none}
+.gm-more{margin:6px 0 0}
+.gm-rbx{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;color:#aaa;text-decoration:none;letter-spacing:.04em}
+.gm-rbx:hover{color:#fff;text-decoration:underline}
+.gm-dl-panel{margin-top:30px;background:rgba(10,10,14,.78);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:34px 24px;text-align:center;backdrop-filter:blur(10px)}
+.gm-dl-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:380px;padding:20px 30px;border-radius:999px;border:1px solid #f5f5f0;background:#f5f5f0;color:#000;font-family:'Manrope',sans-serif;font-size:14px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 0 30px rgba(245,245,240,.14)}
+.gm-dl-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.gm-dl-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 0 1px #f5f5f0,0 0 40px rgba(245,245,240,.4)}
+.gm-dl-btn:active:not(:disabled){transform:scale(.97)}
+.gm-dl-btn:disabled{background:#17171a;border-color:#2a2a30;color:#55555c;box-shadow:none;cursor:not-allowed}
+.gm-updated{margin-top:18px;font-size:12px;color:#888;font-weight:600;display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:center;align-items:center}
+.gm-updated-label{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#666}
+.gm-updated-val{color:#e6e6e6;font-weight:800}
+.gm-ago{color:#8a8a92}
+.gm-fileinfo{margin-top:7px;font-size:11px;color:#666;font-weight:600;word-break:break-all}
+.gm-nofile{margin-top:18px;font-size:12px;color:#777;font-weight:700;letter-spacing:.04em}
+.gm-admin-row{margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+.gm-pub-btn{background:transparent;color:#f5f5f0;border:1px solid #f5f5f0;border-radius:999px;padding:13px 28px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.gm-pub-btn:hover{background:#f5f5f0;color:#000}
+.gm-rm-btn{background:none;border:none;color:#8a5555;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.gm-rm-btn:hover{color:#e07070}
+.gm-pub-info{font-size:12px;color:#888;margin-bottom:14px;font-weight:600}
+.gm-pub-info b{color:#fff}
+.gm-pub-note{font-size:11px;color:#666;margin-top:10px;line-height:1.6}
+.gm-progress{height:6px;background:#1c1c21;border-radius:999px;overflow:hidden;margin-top:16px;display:none}
+.gm-progress i{display:block;height:100%;width:0;background:#f5f5f0;transition:width .15s}
+.gm-pub-err{color:#e07070;font-size:12px;font-weight:700;margin-top:12px;min-height:16px}
+@media(max-width:700px){
+  .gm-view{padding:22px 16px 80px}
+  .gm-title-row h2,.gm-name{font-size:20px}
+  .gm-icon{width:72px;height:72px;border-radius:16px}
+  .gm-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gm-banner{aspect-ratio:16/8;border-radius:14px}
+  .gm-go{display:none}
+  .gm-cta{padding:16px 30px;font-size:12px}
+  .gm-dl-panel{padding:26px 16px}
+}
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
@@ -1431,6 +1539,7 @@ function updateGateBtn(){
     <a class="nav-link" href="#" onclick="showTab('files',document.querySelectorAll('.tab')[1]);closeNav();return false">Files</a>
     <a class="nav-link" href="#" onclick="showTab('updates',document.querySelectorAll('.tab')[2]);closeNav();return false">Updates</a>
     <a class="nav-link" href="#" onclick="showTab('collaborators',document.querySelectorAll('.tab')[3]);closeNav();return false">Collaborators</a>
+    <a class="nav-link" href="#games" onclick="openGames();if(typeof closeNav==='function')closeNav();return false">Download Games<span class="new-badge">NEW</span></a>
     <a class="nav-link" href="#" onclick="openSupport();closeNav();return false">Support<span class="new-badge">NEW</span></a>
     <button class="admin-btn" id="adminBtn" onclick="openAdminLogin();closeNav()">Admin</button>
     <div class="theme-wrap">
@@ -1482,6 +1591,14 @@ function updateGateBtn(){
     <div class="hero-logo-text">Fayple Studios</div>
   </div>
   <div class="hero-sub">Roblox Games Studio &nbsp;◆&nbsp; Est. Oct. 2025</div>
+
+  <!-- DOWNLOAD GAMES -->
+  <div class="gm-cta-wrap">
+    <button class="gm-cta" type="button" onclick="openGames()">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>
+      Download Games
+    </button>
+  </div>
 
   <!-- SOCIAL BUTTONS -->
   <div class="socials">
@@ -1583,6 +1700,54 @@ function updateGateBtn(){
     <div id="collabList" class="collab-grid"><div style="text-align:center;padding:48px;color:#222;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;grid-column:1/-1">Loading…</div></div>
   </div>
 
+</div>
+
+<!-- DOWNLOAD GAMES (separate section) -->
+<section class="gm-view" id="gamesView" aria-label="Download Games">
+  <button class="gm-back" type="button" id="gmBackHome" onclick="closeGames()">‹ Back to home</button>
+
+  <div id="gmList">
+    <div class="gm-title-row">
+      <span class="gm-title-ico">🎮</span>
+      <div>
+        <h2>Download Games</h2>
+        <p>Search any Roblox game · download the files we have published</p>
+      </div>
+    </div>
+
+    <div class="gm-search" id="gmSearch">
+      <div class="gm-search-box">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" id="gmInput" placeholder="Search for games" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" role="combobox" aria-expanded="false" aria-controls="gmSuggest" aria-label="Search for games">
+        <button type="button" class="gm-clear" id="gmClear" aria-label="Clear search">✕</button>
+        <button type="button" class="gm-go" id="gmGo">Search</button>
+      </div>
+      <div class="gm-suggest" id="gmSuggest" role="listbox"></div>
+    </div>
+
+    <div class="gm-hint" id="gmHint"></div>
+    <div class="gm-list-title" id="gmListTitle"></div>
+    <div class="gm-grid" id="gmResults"></div>
+  </div>
+
+  <div id="gmDetail" hidden></div>
+</section>
+
+<div class="modal-overlay" id="gmPublishModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Publish File</span>
+      <button class="modal-close" onclick="closeModal('gmPublishModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="gm-pub-info">Game: <b id="gmPubGame"></b></div>
+      <input type="file" id="gmFile" accept=".rbxl,.rbxlx,.rbxm,.rbxmx,.zip,.rar,.7z">
+      <div class="gm-pub-note">Allowed: .rbxl, .rbxlx, .rbxm, .rbxmx, .zip, .rar, .7z — max 45 MB.<br>Publishing again replaces the current file and resets “Last Updated”.</div>
+      <div class="gm-progress" id="gmProg"><i id="gmProgBar"></i></div>
+      <div class="gm-pub-err" id="gmPubErr"></div>
+      <button class="pill-btn" type="button" id="gmPubBtn" onclick="gmPublish()" style="margin-top:6px">Publish</button>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -2304,5 +2469,398 @@ async function sendTicketMsg(){
   finally{ticketSending=false;document.getElementById('ticketSend').disabled=false;input.focus();}
 }
 </script>
+<script>
+/* ── DOWNLOAD GAMES ──
+   Talks to /api/games/* (netlify/functions/games.mts). Reuses the page's own
+   globals: E (session token), C (is admin), Y (toast). Everything else is
+   prefixed gm* so it can't clash with the main script. */
+(function () {
+  'use strict';
+  var MAX_BYTES = 45 * 1024 * 1024;
+  var EXT = ['rbxl', 'rbxlx', 'rbxm', 'rbxmx', 'zip', 'rar', '7z'];
+  var $ = function (id) { return document.getElementById(id); };
+  var baseTitle = document.title;
+  var st = { q: '', searchSeq: 0, sugSeq: 0, sugTimer: null, sug: [], active: -1, detail: null, detailId: null, agoTimer: null, busy: false, mode: 'catalog' };
+
+  var ICON_SEARCH = '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+  var ICON_DL = '<svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>';
+
+  /* ---------- helpers ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function num(n) {
+    n = +n || 0;
+    if (n >= 1e9) return (n / 1e9).toFixed(1).replace(/\.0$/, '') + 'B';
+    if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+    return String(n);
+  }
+  function bytes(n) { n = +n || 0; return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
+  function isAdmin() { try { return C === true; } catch (e) { return false; } }
+  function token() { try { return E || ''; } catch (e) { return ''; } }
+  function toast(msg, isErr) { try { if (typeof Y === 'function') Y(msg, !!isErr); } catch (e) {} }
+  function ago(ts) {
+    var s = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+    if (s < 45) return 'just now';
+    var m = Math.floor(s / 60); if (m < 60) return (m <= 1 ? 'a minute' : m + ' minutes') + ' ago';
+    var h = Math.floor(m / 60); if (h < 24) return (h === 1 ? 'an hour' : h + ' hours') + ' ago';
+    var d = Math.floor(h / 24); if (d < 30) return (d === 1 ? 'yesterday' : d + ' days ago');
+    var mo = Math.floor(d / 30); if (mo < 12) return (mo === 1 ? 'a month' : mo + ' months') + ' ago';
+    var y = Math.floor(d / 365); return (y <= 1 ? 'a year' : y + ' years') + ' ago';
+  }
+  function dateStr(ts) { try { return new Date(ts).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); } catch (e) { return new Date(ts).toDateString(); } }
+
+  function api(path, opts) {
+    opts = opts || {};
+    var h = {};
+    if (opts.body) h['Content-Type'] = 'application/json';
+    if (opts.auth && token()) h.Authorization = 'Bearer ' + token();
+    return fetch('/api/games' + path, { method: opts.method || 'GET', headers: h, body: opts.body ? JSON.stringify(opts.body) : undefined })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (!r.ok) { var er = new Error(d.error || 'Something went wrong'); er.status = r.status; throw er; }
+          return d;
+        });
+      });
+  }
+
+  /* ---------- routing (#games, #game/<id>) ---------- */
+  function onRoute() {
+    var h = location.hash || '';
+    var m = h.match(/^#game\/(\d+)/);
+    if (m) { openView(); showDetail(m[1]); }
+    else if (h === '#games') { openView(); showList(); }
+    else { hideView(); }
+  }
+  function openView() {
+    if (!document.body.classList.contains('gm-open')) { document.body.classList.add('gm-open'); window.scrollTo(0, 0); }
+  }
+  function hideView() {
+    document.body.classList.remove('gm-open');
+    document.title = baseTitle; stopAgo(); closeSug();
+  }
+  window.openGames = function () { if (location.hash === '#games') onRoute(); else location.hash = '#games'; };
+  window.closeGames = function () {
+    if (location.hash) { try { history.pushState(null, '', location.pathname + location.search); } catch (e) { location.hash = ''; } }
+    hideView(); window.scrollTo(0, 0);
+  };
+  function goGame(id) { location.hash = '#game/' + id; }
+  function goList() { location.hash = '#games'; }
+
+  /* ---------- list / search ---------- */
+  function showList() {
+    $('gmList').hidden = false; $('gmDetail').hidden = true; $('gmBackHome').hidden = false; stopAgo();
+    document.title = baseTitle;
+    if (!$('gmResults').children.length) { if (st.q) runSearch(st.q); else loadCatalog(); }
+  }
+
+  function skeleton(n) { var s = ''; for (var i = 0; i < n; i++) s += '<div class="gm-skel"></div>'; return s; }
+
+  function cardHtml(g) {
+    var has = g.hasFile;
+    return '<button type="button" class="gm-card" data-id="' + esc(g.universeId) + '">' +
+      (g.icon ? '<img class="gm-card-img" loading="lazy" alt="" src="' + esc(g.icon) + '">' : '<div class="gm-card-img"></div>') +
+      '<span class="gm-badge' + (has ? '' : ' off') + '">' + (has ? 'File' : 'No file') + '</span>' +
+      '<div class="gm-card-body"><div class="gm-card-name">' + esc(g.name) + '</div>' +
+      (g.creator ? '<div class="gm-card-by">by ' + esc(g.creator) + '</div>' : '') +
+      '<div class="gm-card-meta">' + (has && g.updatedAt ? 'Updated ' + esc(ago(g.updatedAt)) : (g.playing ? num(g.playing) + ' playing' : '&nbsp;')) + '</div></div></button>';
+  }
+
+  function loadCatalog() {
+    st.mode = 'catalog'; st.q = '';
+    $('gmHint').innerHTML = '';
+    $('gmListTitle').textContent = 'Games with files';
+    $('gmResults').innerHTML = skeleton(6);
+    var seq = ++st.searchSeq;
+    api('/catalog').then(function (d) {
+      if (seq !== st.searchSeq) return;
+      var items = d.items || [];
+      $('gmResults').innerHTML = items.length ? items.map(cardHtml).join('') :
+        '<div class="gm-empty"><b>No game files yet</b>Use the search above to look up any Roblox game.<br>Games we publish files for will show up here.</div>';
+    }).catch(function () {
+      if (seq !== st.searchSeq) return;
+      $('gmResults').innerHTML = '<div class="gm-empty"><b>Couldn’t load games</b>Check your connection and try again.</div>';
+    });
+  }
+
+  function runSearch(q) {
+    q = (q || '').trim(); st.q = q; closeSug();
+    if (!q) { loadCatalog(); return; }
+    st.mode = 'search';
+    var seq = ++st.searchSeq;
+    $('gmHint').innerHTML = '';
+    $('gmListTitle').textContent = 'Searching…';
+    $('gmResults').innerHTML = skeleton(8);
+    api('/search?q=' + encodeURIComponent(q)).then(function (d) {
+      if (seq !== st.searchSeq) return;
+      renderResults(d, q);
+    }).catch(function (e) {
+      if (seq !== st.searchSeq) return;
+      $('gmListTitle').textContent = '';
+      $('gmResults').innerHTML = '<div class="gm-empty"><b>Search failed</b>' + esc(e.message || 'Please try again.') + '</div>';
+    });
+  }
+
+  function renderResults(d, q) {
+    var res = d.results || [];
+    $('gmListTitle').textContent = res.length ? res.length + (res.length === 1 ? ' result' : ' results') + ' for “' + q + '”' : '';
+    var hint = '';
+    if (d.didYouMean) hint += '<span>Did you mean <button type="button" class="gm-link" data-q="' + esc(d.didYouMean) + '">' + esc(d.didYouMean) + '</button>?</span>';
+    if (d.suggestions && d.suggestions.length) {
+      hint += '<span>Related:</span>' + d.suggestions.map(function (s) { return '<button type="button" class="gm-chip" data-q="' + esc(s) + '">' + esc(s) + '</button>'; }).join('');
+    }
+    $('gmHint').innerHTML = hint;
+    $('gmResults').innerHTML = res.length ? res.map(cardHtml).join('') :
+      '<div class="gm-empty"><b>No games found</b>Nothing matched “' + esc(q) + '”.<br>Check the spelling, or paste a Roblox game link / ID.</div>';
+  }
+
+  /* ---------- live suggestions ---------- */
+  function closeSug() { var b = $('gmSuggest'); if (b) b.classList.remove('open'); var i = $('gmInput'); if (i) i.setAttribute('aria-expanded', 'false'); st.active = -1; }
+  function renderSug(d) {
+    var items = [];
+    (d.queries || []).forEach(function (q) { items.push({ type: 'q', q: q }); });
+    (d.games || []).forEach(function (g) { items.push({ type: 'g', g: g }); });
+    st.sug = items;
+    if (!items.length) { closeSug(); return; }
+    var html = '', gi = 0;
+    var hasQ = (d.queries || []).length, hasG = (d.games || []).length;
+    if (hasQ) html += '<div class="gm-sg-label">Suggestions</div>';
+    items.forEach(function (it, i) {
+      if (it.type === 'g' && !gi++ && hasG) html += '<div class="gm-sg-label">Games</div>';
+      if (it.type === 'q') html += '<button type="button" class="gm-sg-item" role="option" data-i="' + i + '">' + ICON_SEARCH + '<span class="gm-sg-main"><span class="gm-sg-name">' + esc(it.q) + '</span></span></button>';
+      else html += '<button type="button" class="gm-sg-item" role="option" data-i="' + i + '">' +
+        (it.g.icon ? '<img alt="" src="' + esc(it.g.icon) + '">' : '<span class="gm-sg-ph"></span>') +
+        '<span class="gm-sg-main"><span class="gm-sg-name">' + esc(it.g.name) + '</span>' + (it.g.creator ? '<span class="gm-sg-sub">by ' + esc(it.g.creator) + '</span>' : '') + '</span>' +
+        (it.g.hasFile ? '<span class="gm-tag">File</span>' : '') + '</button>';
+    });
+    var box = $('gmSuggest'); box.innerHTML = html; box.classList.add('open');
+    $('gmInput').setAttribute('aria-expanded', 'true'); st.active = -1;
+  }
+  function fetchSug(q) {
+    var seq = ++st.sugSeq;
+    api('/suggest?q=' + encodeURIComponent(q)).then(function (d) {
+      if (seq !== st.sugSeq || $('gmInput').value.trim() !== q) return;
+      renderSug(d);
+    }).catch(function () { if (seq === st.sugSeq) closeSug(); });
+  }
+  function pick(i) {
+    var it = st.sug[i]; if (!it) return;
+    closeSug();
+    if (it.type === 'q') { $('gmInput').value = it.q; syncClear(); runSearch(it.q); }
+    else goGame(it.g.universeId);
+  }
+  function moveActive(dir) {
+    var nodes = $('gmSuggest').querySelectorAll('.gm-sg-item'); if (!nodes.length) return;
+    st.active = (st.active + dir + nodes.length) % nodes.length;
+    nodes.forEach(function (n, i) { n.classList.toggle('active', i === st.active); });
+    nodes[st.active].scrollIntoView({ block: 'nearest' });
+  }
+  function syncClear() { $('gmSearch').classList.toggle('has-text', !!$('gmInput').value); }
+
+  /* ---------- game page ---------- */
+  function showDetail(id) {
+    $('gmList').hidden = true; var box = $('gmDetail'); box.hidden = false; $('gmBackHome').hidden = true; stopAgo();
+    st.detailId = id; st.detail = null;
+    box.innerHTML = '<button type="button" class="gm-back" onclick="gmBackToList()">‹ Back to games</button><div class="gm-skel" style="aspect-ratio:16/6;margin-bottom:22px"></div><div class="gm-skel" style="aspect-ratio:16/4"></div>';
+    window.scrollTo(0, 0);
+    api('/' + id).then(function (d) {
+      if (st.detailId !== id) return;
+      st.detail = d; renderDetail();
+    }).catch(function (e) {
+      if (st.detailId !== id) return;
+      box.innerHTML = '<button type="button" class="gm-back" onclick="gmBackToList()">‹ Back to games</button><div class="gm-empty"><b>' + (e.status === 404 ? 'Game not found' : 'Couldn’t load this game') + '</b>' + esc(e.message || '') + '</div>';
+    });
+  }
+  window.gmBackToList = function () { goList(); };
+
+  function renderDetail() {
+    var d = st.detail; if (!d) return;
+    var g = d.game, f = d.file, admin = isAdmin();
+    var total = (g.up || 0) + (g.down || 0);
+    var like = total ? Math.round((g.up / total) * 100) + '%' : '—';
+    var rbxUrl = 'https://www.roblox.com/games/' + esc(g.rootPlaceId || g.universeId);
+    var stats = '';
+    stats += '<div class="gm-stat">Playing<b>' + num(g.playing) + '</b></div>';
+    stats += '<div class="gm-stat">Visits<b>' + num(g.visits) + '</b></div>';
+    stats += '<div class="gm-stat">Likes<b>' + like + '</b></div>';
+    if (g.maxPlayers) stats += '<div class="gm-stat">Max players<b>' + g.maxPlayers + '</b></div>';
+    if (g.genre) stats += '<div class="gm-stat">Genre<b>' + esc(g.genre) + '</b></div>';
+
+    var dl = '<button type="button" class="gm-dl-btn" id="gmDl"' + (f ? '' : ' disabled aria-disabled="true"') + '>' + ICON_DL + 'Download</button>';
+    if (f) {
+      dl += '<div class="gm-updated"><span class="gm-updated-label">Last Updated</span><span class="gm-updated-val" title="' + esc(new Date(f.ts).toLocaleString()) + '">' + esc(dateStr(f.ts)) + '</span><span class="gm-ago" data-ts="' + f.ts + '">· ' + esc(ago(f.ts)) + '</span></div>' +
+        '<div class="gm-fileinfo">' + esc(f.origName) + ' · ' + esc(bytes(f.size)) + '</div>';
+    } else {
+      dl += '<div class="gm-nofile">We do not have this game file</div>';
+    }
+    if (admin) {
+      dl += '<div class="gm-admin-row"><button type="button" class="gm-pub-btn" id="gmPubOpen">Publish file</button>' +
+        (f ? '<button type="button" class="gm-rm-btn" id="gmRm">Remove file</button>' : '') + '</div>';
+    }
+
+    var long = (g.description || '').length > 260;
+    $('gmDetail').innerHTML =
+      '<button type="button" class="gm-back" onclick="gmBackToList()">‹ Back to games</button>' +
+      (g.banner ? '<img class="gm-banner" alt="" src="' + esc(g.banner) + '">' : '') +
+      '<div class="gm-head">' + (g.icon ? '<img class="gm-icon" alt="" src="' + esc(g.icon) + '">' : '') +
+      '<div><div class="gm-name">' + esc(g.name) + '</div>' + (g.creator ? '<div class="gm-by">by <b style="color:#ccc">' + esc(g.creator) + '</b>' + (g.creatorVerified ? ' ✓' : '') + '</div>' : '') + '</div></div>' +
+      '<div class="gm-chips">' + stats + '</div>' +
+      (g.description ? '<div class="gm-desc" id="gmDesc">' + esc(g.description) + '</div>' + (long ? '<button type="button" class="gm-link gm-more" id="gmMore">Show more</button>' : '') : '') +
+      '<a class="gm-rbx" href="' + rbxUrl + '" target="_blank" rel="noopener noreferrer">View on Roblox ↗</a>' +
+      '<div class="gm-dl-panel">' + dl + '</div>';
+    document.title = g.name + ' — Fayple Studios';
+    startAgo();
+  }
+
+  function startAgo() {
+    stopAgo();
+    st.agoTimer = setInterval(function () {
+      document.querySelectorAll('.gm-ago[data-ts]').forEach(function (el) { el.textContent = '· ' + ago(+el.getAttribute('data-ts')); });
+    }, 30000);
+  }
+  function stopAgo() { if (st.agoTimer) { clearInterval(st.agoTimer); st.agoTimer = null; } }
+
+  function download() {
+    var f = st.detail && st.detail.file; if (!f) return;
+    var a = document.createElement('a');
+    a.href = f.publicUrl; a.download = f.origName; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+    toast('Download started');
+  }
+
+  /* ---------- admin: publish / remove ---------- */
+  window.gmOpenPublish = function () {
+    if (!isAdmin() || !st.detail) return;
+    $('gmPubGame').textContent = st.detail.game.name;
+    $('gmFile').value = ''; $('gmPubErr').textContent = '';
+    $('gmProg').style.display = 'none'; $('gmProgBar').style.width = '0';
+    $('gmPubBtn').disabled = false; $('gmPubBtn').textContent = 'Publish';
+    $('gmPublishModal').classList.add('open');
+  };
+
+  function putFile(signedUrl, file, onProgress) {
+    return new Promise(function (resolve, reject) {
+      var fd = new FormData();
+      fd.append('cacheControl', '3600');
+      fd.append('', file);
+      var xhr = new XMLHttpRequest();
+      xhr.open('PUT', signedUrl);
+      try { if (typeof e === 'string' && e && !/^YOUR_/.test(e)) xhr.setRequestHeader('apikey', e); } catch (x) {}
+      xhr.upload.onprogress = function (ev) { if (ev.lengthComputable) onProgress(ev.loaded / ev.total); };
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) return resolve();
+        var msg = 'Upload failed (' + xhr.status + ')';
+        try { var j = JSON.parse(xhr.responseText); if (j.message || j.error) msg = (j.message || j.error); } catch (x) {}
+        reject(new Error(msg));
+      };
+      xhr.onerror = function () { reject(new Error('Upload failed — check your connection')); };
+      xhr.send(fd);
+    });
+  }
+
+  window.gmPublish = function () {
+    if (st.busy || !isAdmin() || !st.detail) return;
+    var file = $('gmFile').files[0], err = $('gmPubErr'); err.textContent = '';
+    if (!file) { err.textContent = 'Choose a file first.'; return; }
+    var ext = (file.name.split('.').pop() || '').toLowerCase();
+    if (EXT.indexOf(ext) < 0) { err.textContent = 'Unsupported file type. Allowed: .' + EXT.join(', .'); return; }
+    if (file.size > MAX_BYTES) { err.textContent = 'File is too large (max 45 MB).'; return; }
+
+    var id = st.detail.game.universeId, btn = $('gmPubBtn'), bar = $('gmProgBar');
+    st.busy = true; btn.disabled = true; btn.textContent = 'Uploading…';
+    $('gmProg').style.display = 'block'; bar.style.width = '0';
+
+    api('/' + id + '/upload-url', { method: 'POST', auth: true, body: { filename: file.name, size: file.size } })
+      .then(function (slot) {
+        return putFile(slot.signedUrl, file, function (p) { bar.style.width = Math.round(p * 100) + '%'; }).then(function () { return slot; });
+      })
+      .then(function (slot) {
+        btn.textContent = 'Publishing…'; bar.style.width = '100%';
+        return api('/' + id + '/publish', { method: 'POST', auth: true, body: { path: slot.path, origName: file.name } });
+      })
+      .then(function (res) {
+        if (st.detail && st.detail.game.universeId === id) { st.detail.file = res.file; renderDetail(); }
+        $('gmResults').innerHTML = ''; // refresh catalog/search next time the list opens
+        closeModalSafe(); toast('File published');
+      })
+      .catch(function (e) {
+        err.textContent = e.message || 'Something went wrong';
+        btn.disabled = false; btn.textContent = 'Publish'; $('gmProg').style.display = 'none';
+      })
+      .then(function () { st.busy = false; });
+  };
+  function closeModalSafe() { $('gmPublishModal').classList.remove('open'); }
+
+  function removeFile() {
+    if (!isAdmin() || !st.detail || !st.detail.file) return;
+    if (!confirm('Remove the published file for “' + st.detail.game.name + '”?')) return;
+    var id = st.detail.game.universeId;
+    api('/' + id + '/file', { method: 'DELETE', auth: true }).then(function () {
+      if (st.detail && st.detail.game.universeId === id) { st.detail.file = null; renderDetail(); }
+      $('gmResults').innerHTML = ''; toast('File removed');
+    }).catch(function (e) { toast(e.message || 'Could not remove the file', true); });
+  }
+
+  /* ---------- wiring ---------- */
+  document.addEventListener('DOMContentLoaded', function () {
+    var input = $('gmInput'); if (!input) return;
+
+    input.addEventListener('input', function () {
+      syncClear();
+      clearTimeout(st.sugTimer);
+      var q = input.value.trim();
+      if (q.length < 2) { st.sugSeq++; closeSug(); return; }
+      st.sugTimer = setTimeout(function () { fetchSug(q); }, 220);
+    });
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowDown') { ev.preventDefault(); moveActive(1); }
+      else if (ev.key === 'ArrowUp') { ev.preventDefault(); moveActive(-1); }
+      else if (ev.key === 'Escape') { closeSug(); }
+      else if (ev.key === 'Enter') {
+        ev.preventDefault(); clearTimeout(st.sugTimer); st.sugSeq++;
+        if (st.active >= 0) pick(+$('gmSuggest').querySelectorAll('.gm-sg-item')[st.active].getAttribute('data-i'));
+        else runSearch(input.value);
+      }
+    });
+    input.addEventListener('focus', function () { if (st.sug.length && input.value.trim().length >= 2) $('gmSuggest').classList.add('open'); });
+    $('gmGo').addEventListener('click', function () { clearTimeout(st.sugTimer); st.sugSeq++; runSearch(input.value); });
+    $('gmClear').addEventListener('click', function () { input.value = ''; syncClear(); st.sug = []; closeSug(); runSearch(''); input.focus(); });
+    $('gmSuggest').addEventListener('mousedown', function (ev) { ev.preventDefault(); });
+    $('gmSuggest').addEventListener('click', function (ev) {
+      var it = ev.target.closest('.gm-sg-item'); if (it) pick(+it.getAttribute('data-i'));
+    });
+    document.addEventListener('click', function (ev) { if (!ev.target.closest('#gmSearch')) closeSug(); });
+
+    $('gmResults').addEventListener('click', function (ev) {
+      var c = ev.target.closest('.gm-card'); if (c) goGame(c.getAttribute('data-id'));
+    });
+    $('gmHint').addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-q]'); if (!b) return;
+      input.value = b.getAttribute('data-q'); syncClear(); runSearch(input.value);
+    });
+    $('gmDetail').addEventListener('click', function (ev) {
+      var t = ev.target;
+      if (t.closest('#gmDl')) download();
+      else if (t.closest('#gmPubOpen')) window.gmOpenPublish();
+      else if (t.closest('#gmRm')) removeFile();
+      else if (t.closest('#gmMore')) {
+        var d = $('gmDesc'), full = d.classList.toggle('full'); t.closest('#gmMore').textContent = full ? 'Show less' : 'Show more';
+      }
+    });
+
+    window.addEventListener('hashchange', onRoute);
+    onRoute();
+  });
+
+  // Re-draw admin controls when the main script finishes sign-in / sign-out,
+  // and leave the games section when a normal tab is clicked.
+  window.addEventListener('load', function () {
+    try {
+      if (typeof F === 'function') { var _F = F; window.F = function () { var r = _F.apply(this, arguments); try { if (st.detail && !$('gmDetail').hidden) renderDetail(); } catch (x) {} return r; }; }
+      if (typeof showTab === 'function') { var _s = showTab; window.showTab = function () { if (document.body.classList.contains('gm-open')) window.closeGames(); return _s.apply(this, arguments); }; }
+    } catch (x) {}
+  });
+})();
+</script>
+
 </body>
 </html>
