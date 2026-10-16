@@ -1,6 +1,7 @@
 [build]
   publish = "."
   functions = "netlify/functions"
+  command = "node scripts/inject-games.mjs"
 
 [[headers]]
   for = "/*"
