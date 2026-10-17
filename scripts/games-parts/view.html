@@ -1,0 +1,48 @@
+<!-- DOWNLOAD GAMES (separate section) -->
+<section class="gm-view" id="gamesView" aria-label="Download Games">
+  <button class="gm-back" type="button" id="gmBackHome" onclick="closeGames()">‹ Back to home</button>
+
+  <div id="gmList">
+    <div class="gm-title-row">
+      <span class="gm-title-ico">🎮</span>
+      <div>
+        <h2>Download Games</h2>
+        <p>Search any Roblox game · download the files we have published</p>
+      </div>
+    </div>
+
+    <div class="gm-search" id="gmSearch">
+      <div class="gm-search-box">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" id="gmInput" placeholder="Search for games" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" role="combobox" aria-expanded="false" aria-controls="gmSuggest" aria-label="Search for games">
+        <button type="button" class="gm-clear" id="gmClear" aria-label="Clear search">✕</button>
+        <button type="button" class="gm-go" id="gmGo">Search</button>
+      </div>
+      <div class="gm-suggest" id="gmSuggest" role="listbox"></div>
+    </div>
+
+    <div class="gm-hint" id="gmHint"></div>
+    <div class="gm-list-title" id="gmListTitle"></div>
+    <div class="gm-grid" id="gmResults"></div>
+  </div>
+
+  <div id="gmDetail" hidden></div>
+</section>
+
+<div class="modal-overlay" id="gmPublishModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Publish File</span>
+      <button class="modal-close" onclick="closeModal('gmPublishModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="gm-pub-info">Game: <b id="gmPubGame"></b></div>
+      <input type="file" id="gmFile" accept=".rbxl,.rbxlx,.rbxm,.rbxmx,.zip,.rar,.7z">
+      <div class="gm-pub-note">Allowed: .rbxl, .rbxlx, .rbxm, .rbxmx, .zip, .rar, .7z — max 45 MB.<br>Publishing again replaces the current file and resets “Last Updated”.</div>
+      <div class="gm-progress" id="gmProg"><i id="gmProgBar"></i></div>
+      <div class="gm-pub-err" id="gmPubErr"></div>
+      <button class="pill-btn" type="button" id="gmPubBtn" onclick="gmPublish()" style="margin-top:6px">Publish</button>
+    </div>
+  </div>
+</div>
+
